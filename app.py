@@ -24,11 +24,13 @@ def menuUI(league):
 
 def main():
     active = True
-    league = League()
-    league.importLeague(PLAYERS)
-    league.draftTeams(TEAMS)
+    theWholeLeague = League()
+    theWholeLeague.importLeague(PLAYERS)
+    theWholeLeague.getLeague().setTeamStats()
+    theWholeLeague.getLeague().leagueAverageHeight = theWholeLeague.getLeague().getTeamStats()['averageHeight']
+    theWholeLeague.draftTeams(TEAMS)
     while active:
-        active = menuUI(league)
+        active = menuUI(theWholeLeague)
 
 if __name__ == "__main__":
     main()

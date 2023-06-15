@@ -1,5 +1,3 @@
-from team_stats import TeamStats
-
 class BaseballTeam:
     leagueAverageHeight = 0
     def __init__(self, name):
@@ -17,7 +15,6 @@ class BaseballTeam:
         return self.name
     def getPlayers(self):
         return self.players
-
     # Setter for players
     def addPlayer(self, value):
         self.players.append(value)

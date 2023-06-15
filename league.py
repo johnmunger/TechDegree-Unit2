@@ -29,6 +29,9 @@ class League:
         self.league = BaseballTeam('League')
         self.teams = []
 
+    def getLeague(self):
+        return self.league
+
     def getTeams(self):
         return self.teams
 
@@ -60,13 +63,13 @@ class League:
             r = i%3
             team = self.teams[r].getName()
             if(r == 0):
-                #addSuspense(team, playerName, i)
+                addSuspense(team, playerName, i)
                 self.teams[0].addPlayer(experiencedPlayers[i])
             elif(r == 1):
-                #addSuspense(team, playerName, i)
+                addSuspense(team, playerName, i)
                 self.teams[1].addPlayer(experiencedPlayers[i])
             else:
-                #addSuspense(team, playerName, i)
+                addSuspense(team, playerName, i)
                 self.teams[2].addPlayer(experiencedPlayers[i])
         
         for i in range(len(inexperiencedPlayers)):
@@ -74,13 +77,13 @@ class League:
             r = i%3
             team = self.teams[r].getName()
             if(i % 3 == 0):
-                #addSuspense(team, playerName, i)
+                addSuspense(team, playerName, i)
                 self.teams[0].addPlayer(inexperiencedPlayers[i])
             elif(i % 3 == 1):
-                #addSuspense(team, playerName, i)
+                addSuspense(team, playerName, i)
                 self.teams[1].addPlayer(inexperiencedPlayers[i])
             else:
-                #addSuspense(team, playerName, i)
+                addSuspense(team, playerName, i)
                 self.teams[2].addPlayer(inexperiencedPlayers[i])
 
         for team in self.teams:

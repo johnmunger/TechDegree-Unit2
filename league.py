@@ -1,4 +1,4 @@
-from baseball_team import BaseballTeam
+from basketball_team import BasketballTeam
 from player import Player
 from time import sleep
 
@@ -16,7 +16,7 @@ def deliberating(total, width=15):
         # Print the progress bar
         print(f"[{'=' * filledWidth}{' ' * emptyWidth}] {percentage}%", end='\r')
         
-    print("\n\n")
+    print("\n")
 
 def addSuspense(team, player, index):
     print(f"The {team} choose to draft\n")
@@ -25,7 +25,7 @@ def addSuspense(team, player, index):
 
 class League:
     def __init__(self):
-        self.league = BaseballTeam('League')
+        self.league = BasketballTeam('League')
         self.teams = []
 
     def getLeague(self):
@@ -35,7 +35,7 @@ class League:
         return self.teams
 
     def importLeague(self, players):
-        # Code to import the league data and create BaseballTeam instances
+        # Code to import the league data and create BasketballTeam instances
         # For each in players create a player and add it to league
 
         for player in players:
@@ -55,7 +55,7 @@ class League:
                 inexperiencedPlayers.append(player)
 
         for team in teamNames:
-            self.teams.append(BaseballTeam(team))
+            self.teams.append(BasketballTeam(team))
 
         for i in range(len(experiencedPlayers)):
             

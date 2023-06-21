@@ -4,7 +4,7 @@ def menuUI(league):
     menuText=[
         "---- Menu ----\n",
         "Here are your choices:\n",
-        "   A) Display Team Stats",
+        "   A) Display Basketball Team Stats",
         "   B) Quit\n",
         "Enter an Option:  "
         ]
@@ -15,7 +15,7 @@ def menuUI(league):
             action = input(menuText[4])
             if action.upper() not in ['A','B']:
                 raise ValueError("Please enter either A or B")
-            if (action == 'B'):
+            if (action.upper() == 'B'):
                 return False
             break
         except ValueError as e:

@@ -4,10 +4,10 @@ class BaseballTeam:
         self.name = name
         self.players = []
         self.teamStats = {
-            "totalPlayers":0,
-            "totalExperienced":0,
-            "totalInexperienced":0,
-            "averageHeight":0
+            "Total Players":0,
+            "Total Experienced":0,
+            "Total Inexperienced":0,
+            "Average Height":0
             }
 
     # Getter for players
@@ -26,20 +26,21 @@ class BaseballTeam:
     # Setter for teamStats
     def setTeamStats(self):
         for player in self.players:
-            self.teamStats['totalPlayers'] += 1
-            self.teamStats['averageHeight'] += player.getHeight()
+            self.teamStats['Total Players'] += 1
+            self.teamStats['Average Height'] += player.getHeight()
             if (player.getExperience()):
-                self.teamStats['totalExperienced'] += 1
+                self.teamStats['Total Experienced'] += 1
             else:
-                self.teamStats['totalInexperienced'] += 1
+                self.teamStats['Total Inexperienced'] += 1
             
                 
-        self.teamStats['averageHeight'] /= self.teamStats['totalPlayers']
+        self.teamStats['Average Height'] /= self.teamStats['Total Players']
+        self.teamStats['Average Height'] = round(self.teamStats['Average Height'], 1)
 
     def displayTeamStats(self):
         # Code to display team stats
         for key, value in self.getTeamStats().items():
-            print(f'{key}: {value}')
+            print(f'{key}: {value}\n')
         self.playersOnTeam()
         self.guardiansOnTeam()
 
@@ -54,7 +55,7 @@ class BaseballTeam:
                 printStr += name + ", "
             else:
                 printStr += name  
-        print(f"Players: {printStr} \n\n")
+        print(f"Players: {printStr} \n")
 
     def guardiansOnTeam(self):
         # Code to retrieve guardians on a team
@@ -69,6 +70,6 @@ class BaseballTeam:
             if(i != lastIndex):
                 printStr += nameList[i] + ", "
             else:
-                printStr += nameList[i] + "\n\n"
+                printStr += nameList[i] + "\n"
 
-        print(f"Guardians: {printStr} \n\n")
+        print(f"Guardians: {printStr} \n")

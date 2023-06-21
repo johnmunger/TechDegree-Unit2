@@ -1,7 +1,6 @@
 from baseball_team import BaseballTeam
 from player import Player
 from time import sleep
-from random import randint
 
 def deliberating(total, width=15):
     for progress in range(1, total + 1):
@@ -20,9 +19,9 @@ def deliberating(total, width=15):
     print("\n\n")
 
 def addSuspense(team, player, index):
-    print(f"The {team} choose to draft\n\n")
-    deliberating(randint(10,45-index*3))
-    print(f"{player}!!!\n\n")
+    print(f"The {team} choose to draft\n")
+    deliberating(10-index)
+    print(f"{player}!!!\n")
 
 class League:
     def __init__(self):
@@ -59,6 +58,7 @@ class League:
             self.teams.append(BaseballTeam(team))
 
         for i in range(len(experiencedPlayers)):
+            
             playerName = experiencedPlayers[i].getName()
             r = i%3
             team = self.teams[r].getName()
@@ -101,5 +101,5 @@ class League:
         draftee.setName(name)
         draftee.setGuardians(guardians.split(' and '))
         draftee.setExperience(experience)
-        draftee.setHeight(round(int(height[:2]), ))
+        draftee.setHeight(int(height[:2]))
         self.league.addPlayer(draftee)

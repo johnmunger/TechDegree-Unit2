@@ -56,7 +56,7 @@ Menu UI has two sequential while loops - one for each in input statement.  The p
 Starting with the most basic constituents elements and working our way up.
 
 ### Player
-We start with the player. The play has all the attributes outlined in our CONSTANT arrays.
+We start with the player. The play has all the attributes outlined in our `constants.py`
 * name
 * guardians
 * experience
@@ -73,7 +73,7 @@ It keeps track of the team level info
 Getter/Setter functions
 
 ### League
-The two members here are the results of the clean and import of the data in constants.py
+The two members here are the results of the clean and import of the data in `constants.py`
 * league - a team with all the players in the league
 * teams - a list of team names
 

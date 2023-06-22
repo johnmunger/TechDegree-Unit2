@@ -22,7 +22,6 @@ class BasketballTeam:
     # Getter for teamStats
     def getTeamStats(self):
         return self.teamStats
-
     # Setter for teamStats
     def setTeamStats(self):
         for player in self.players:
@@ -37,12 +36,18 @@ class BasketballTeam:
         self.teamStats['Average Height'] /= self.teamStats['Total Players']
         self.teamStats['Average Height'] = round(self.teamStats['Average Height'], 1)
 
-    def displayTeamStats(self):
+    #setter for leagueAverageHeight
+    def setLeagueAverageHeight(self, height):
+        BasketballTeam.leagueAverageHeight = height #updates class var
+
+    def displayTeamStats(self, leagueAverageHeight):
         # Code to display team stats
         for key, value in self.getTeamStats().items():
             print(f'{key}: {value}\n')
+        print(f"Versus League Average Height: {leagueAverageHeight}\n")
         self.playersOnTeam()
         self.guardiansOnTeam()
+
 
     def playersOnTeam(self):
         # Code to retrieve players on a team 

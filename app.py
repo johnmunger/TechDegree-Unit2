@@ -1,42 +1,52 @@
 from constants import TEAMS, PLAYERS
 from league import League
-def menuUI(league):
+
+def openingMenuText():
     menuText=[
-        "---- Menu ----\n",
-        "Here are your choices:\n",
-        "   A) Display Basketball Team Stats",
-        "   B) Quit\n",
-        "Enter an Option:  "
-        ]
-    for i in range(4):
+    "---- Menu ----\n",
+    "Here are your choices:\n",
+    "   A) Display Basketball Team Stats",
+    "   B) Quit\n"
+    ]
+    for i in range(len(menuText)):
         print(menuText[i])
+
+def printStats(team):
+    statsHeader = ['#########################',
+                f'        {team.getName()}       ',
+                '#########################']
+    for i in range(len(statsHeader)):
+        print(statsHeader[i])
+    team.displayTeamStats(team.leagueAverageHeight)
+
+def ifOptionAPrintTeamSelection(league):
+    options = "ABC"
+    for i in range(len(options)):
+        print(f"{options[i]}. {league.teams[i].getName()}\n")
+
+def menuUI(league):
+    openingMenuText()
     while True:
         try:
-            action = input(menuText[4])
-            if action.upper() not in ['A','B']:
+            action = input('Please select an option:')
+            if action.upper() not in ['A','B']: #I originally used 'AB', but that apparently include '' so hitting enter didn't raise an exception
                 raise ValueError("Please enter either A or B")
             if (action.upper() == 'B'):
                 return False
             break
         except ValueError as e:
             print(e)
-    options = "ABC"
-    for i in range(len(options)):
-        print(f"{options[i]}. {league.teams[i].getName()}\n")
+
+    ifOptionAPrintTeamSelection(league)
+    
     while True:
         try:
-            selection = input('Please select a team: ')
-            selectionsDictionary = {"A":0,"B":1,"C":2}
+            selection = input('Please select a team: ')#get team name option
             teams = league.getTeams()
-            if selection.upper() not in ['A','B','C']:
+            if selection.upper() not in ['A','B','C']:#same as above
                 raise ValueError("Invalid Selection. Please select A, B, or C.") #raising error if invalid option is selected
-            team = teams[selectionsDictionary[selection.upper()]]
-            statsHeader = ['#########################',
-                            f'        {team.getName()}       ',
-                            '#########################']
-            for i in range(len(statsHeader)):
-                print(statsHeader[i])
-            team.displayTeamStats()
+            team = teams[(lambda x: ord(x.upper()) - ord('A'))(selection)]#this saves declaring a dictionary to simply map user's string input to index integer
+            printStats(team)
             break # break the loop once valid input is given.
         except ValueError as e:
             print(e)
@@ -47,7 +57,7 @@ def main():
     theWholeLeague = League()
     theWholeLeague.importLeague(PLAYERS)
     theWholeLeague.getLeague().setTeamStats()
-    theWholeLeague.getLeague().leagueAverageHeight = theWholeLeague.getLeague().getTeamStats()['Average Height']
+    theWholeLeague.getLeague().setLeagueAverageHeight(theWholeLeague.getLeague().getTeamStats()['Average Height'])
     theWholeLeague.draftTeams(TEAMS)
     while active:
         active = menuUI(theWholeLeague)

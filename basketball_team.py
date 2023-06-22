@@ -47,29 +47,27 @@ class BasketballTeam:
     def playersOnTeam(self):
         # Code to retrieve players on a team 
         # 
-        printStr = '' 
+        playersDict= {}
         for i in range(len(self.players)):
-            name = self.players[i].getName()
-            lastIndex = len(self.players)-1
-            if(i != lastIndex):
-                printStr += name + ", "
-            else:
-                printStr += name  
-        print(f"Players: {printStr} \n")
+            playersDict[self.players[i].getName()] = self.players[i].getHeight()
+
+        sortedData = {k:v for k,v in sorted(playersDict.items(), key=lambda item: item[1])}
+
+        printStr=""
+        for tuple in sortedData.items():
+            printStr += f"{tuple[0]}, "
+
+        print(f"Players(shortest-tallest): {printStr} \n")
 
     def guardiansOnTeam(self):
         # Code to retrieve guardians on a team
         nameList=[]
-        printStr = '' 
+        printStr = "" 
         for player in self.players:
             guardians = player.getGuardians()
             for guardian in guardians:
                 nameList.append(guardian)
         for i in range(len(nameList)):
-            lastIndex = len(nameList)-1
-            if(i != lastIndex):
-                printStr += nameList[i] + ", "
-            else:
-                printStr += nameList[i] + "\n"
+            printStr += f"{nameList[i]}, "
 
         print(f"Guardians: {printStr} \n")
